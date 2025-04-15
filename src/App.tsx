@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import Board from "./pages/Board";
 import Login from "./pages/Login"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -10,7 +11,15 @@ const router = createBrowserRouter([
     path: "/",
     element:
       <ProtectedRoute>
-        <Home />
+        <Dashboard />
+      </ProtectedRoute>
+  },
+
+  {
+    path: "/board",
+    element:
+      <ProtectedRoute>
+        <Board />
       </ProtectedRoute>
   },
 
