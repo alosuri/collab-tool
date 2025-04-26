@@ -2,13 +2,14 @@ import { useAuth } from "@/context/AuthContext";
 import { Button, InputGroup, Input, Field, Stack, FileUpload } from "@chakra-ui/react"
 import supabase from "@/lib/supabase";
 import { ImageIcon, LockKeyholeIcon, MailIcon, UserIcon } from "lucide-react";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 
 const AccountSettings = () => {
   const { session } = useAuth();
 
   const [file, setFile] = useState<File | null>(null)
+  const [projects, setProjects] = useState<any[]>([]);  // State to store projects
 
   // Event handler to handle file selection
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +20,28 @@ const AccountSettings = () => {
       setFile(selectedFile)
     }
   }
+
+  const fetchProjects = async () => {
+    if (!session?.user.id) return;
+
+    const { data, error } = await supabase
+      .from("projects")
+      .select("*")
+      .eq("user_id", session.user.id);
+
+    console.log(projects)
+
+    if (error) {
+      console.error("Error fetching projects:", error);
+    } else {
+      setProjects(data || []);
+    }
+  };
+
+  useEffect(() => {
+    fetchProjects();
+  }, [session?.user.id]);
+
 
   const uploadFileToSupabase = async (file: File) => {
     const fileName = `public/${session?.user.id}_${Date.now()}.png`;
@@ -44,6 +67,7 @@ const AccountSettings = () => {
         console.log("File URL:", fileUrl)
 
         // TODO: CHECK IF FILE IS ACTUALLY DELETED, BECAUSE IT'S STILL SHOWING IN SUPABASE
+        // FIX: NVM, IT'S FIXED, 👍👍👍 
 
         if (oldFilePath != "") {
           const { error: deleteError } = await supabase.storage
@@ -70,7 +94,7 @@ const AccountSettings = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar onProjectCreated={fetchProjects}/>
       <Stack gap="4" h="100vh" alignItems="center" mx="4">
         <FileUpload.Root capture="environment">
           <FileUpload.HiddenInput onChange={handleFileChange} />

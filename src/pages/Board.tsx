@@ -1,6 +1,6 @@
 import {
   Button, Flex, Drawer, Portal, CloseButton, Tabs,
-  Separator, HStack, ColorPicker, parseColor, Kbd
+  Separator, HStack, ColorPicker, parseColor
 } from "@chakra-ui/react";
 import ThemeToggle from "../components/ThemeToggle";
 import {

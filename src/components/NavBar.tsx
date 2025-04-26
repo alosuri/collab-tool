@@ -1,6 +1,5 @@
-import { Flex, Heading, Button, Menu, Avatar, Popover, Float, Circle, Portal, Text } from "@chakra-ui/react"
+import { Flex, Heading, Menu, Avatar, Popover, Float, Circle, Portal, Text } from "@chakra-ui/react"
 import { useAuth } from "@/context/AuthContext"
-import { PlusIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import supabase from "@/lib/supabase";

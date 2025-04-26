@@ -99,6 +99,8 @@ const Login = () => {
           <Field.ErrorText>{errors.access_pass?.message}</Field.ErrorText>
         </Field.Root>
 
+        <Button variant="ghost" onClick={() => setLogin(false)}>Don't have an account? Create one</Button>
+
         <Button type="submit" variant="surface">Submit</Button>
         <Text color="fg.error">{error?.message}</Text>
       </Stack></form > : <form onSubmit={onSubmitRegister}> <Stack gap="4" h="100vh" alignItems="center" justifyContent="center" mx="4">
@@ -127,6 +129,7 @@ const Login = () => {
           <PasswordInput {...register("access_pass")} />
           <Field.ErrorText>{errors.access_pass?.message}</Field.ErrorText>
         </Field.Root>
+        <Button variant="ghost" onClick={() => setLogin(true)}>Already have an account? Log in</Button>
 
         <Button type="submit" variant="surface">Submit</Button>
         <Text color="fg.error">{error?.message}</Text>

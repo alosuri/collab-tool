@@ -87,6 +87,7 @@ const Chat = () => {
                   maxW="60%"
                   wordWrap="break-word"
                   padding="2"
+                  key={index}
                 >
                   {message.message}
                 </Box>
