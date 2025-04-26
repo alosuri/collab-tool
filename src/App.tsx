@@ -5,6 +5,7 @@ import Login from "./pages/Login"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
+import AccountSettings from "./pages/AccountSettings";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,14 @@ const router = createBrowserRouter([
     element:
       <ProtectedRoute>
         <Board />
+      </ProtectedRoute>
+  },
+
+  {
+    path: "/settings",
+    element:
+      <ProtectedRoute>
+        <AccountSettings />
       </ProtectedRoute>
   },
 

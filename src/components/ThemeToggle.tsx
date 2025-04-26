@@ -6,7 +6,7 @@ const ThemeToggle = () => {
     const { toggleColorMode, colorMode } = useColorMode();
 
     return (
-        <Button onClick={toggleColorMode} aspectRatio={"square"}> {colorMode == 'light' ? <SunIcon fill="true"/> : <MoonIcon /> } </Button>
+        <Button variant="surface" onClick={toggleColorMode} aspectRatio={"square"}> {colorMode == 'light' ? <SunIcon fill="true"/> : <MoonIcon /> } </Button>
     )
 }
 
