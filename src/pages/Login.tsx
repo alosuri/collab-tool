@@ -12,6 +12,7 @@ interface FormValues {
   name: string,
   email: string,
   password: string,
+  access_pass: string,
 }
 
 const Login = () => {
@@ -29,35 +30,39 @@ const Login = () => {
   useEffect(() => {
     if (!loading && session) {
       if (login) {
-        navigate('/', { state: { from: "login" } });
+        navigate('/collab-tool/', { state: { from: "login" } });
       }
       else {
-        navigate('/', { state: { from: "register" } });
+        navigate('/collab-tool/', { state: { from: "register" } });
       }
     }
   }, [loading, session, navigate]);
 
   const registerNewAccount = async (data: any) => {
-    const { error } = await supabase.auth.signUp({
-      email: data.email,
-      password: data.password,
-      options: {
-        data: {
-          name: data.name,
+    if (data.access_pass == import.meta.env.VITE_ACCESS_PASS) {
+      const { error } = await supabase.auth.signUp({
+        email: data.email,
+        password: data.password,
+        options: {
+          data: {
+            name: data.name,
+          }
         }
-      }
-    });
+      });
 
-    setError(error);
+      setError(error);
+    }
   }
 
   const signIn = async (data: any) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email: data.email,
-      password: data.password,
-    });
+    if (data.access_pass == import.meta.env.VITE_ACCESS_PASS) {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: data.email,
+        password: data.password,
+      });
 
-    setError(error);
+      setError(error);
+    }
   }
 
   if (loading) {
@@ -88,6 +93,12 @@ const Login = () => {
           <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
         </Field.Root>
 
+        <Field.Root invalid={!!errors.access_pass} w={{ base: "100%", sm: "sm" }}>
+          <Field.Label>Access Password</Field.Label>
+          <PasswordInput {...register("access_pass")} />
+          <Field.ErrorText>{errors.access_pass?.message}</Field.ErrorText>
+        </Field.Root>
+
         <Button type="submit" variant="surface">Submit</Button>
         <Text color="fg.error">{error?.message}</Text>
       </Stack></form > : <form onSubmit={onSubmitRegister}> <Stack gap="4" h="100vh" alignItems="center" justifyContent="center" mx="4">
@@ -109,6 +120,12 @@ const Login = () => {
           <Field.Label>Password</Field.Label>
           <PasswordInput {...register("password")} />
           <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
+        </Field.Root>
+
+        <Field.Root invalid={!!errors.access_pass} w={{ base: "100%", sm: "sm" }}>
+          <Field.Label>Access Password</Field.Label>
+          <PasswordInput {...register("access_pass")} />
+          <Field.ErrorText>{errors.access_pass?.message}</Field.ErrorText>
         </Field.Root>
 
         <Button type="submit" variant="surface">Submit</Button>

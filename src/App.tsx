@@ -9,7 +9,7 @@ import AccountSettings from "./pages/AccountSettings";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/collab-tool/",
     element:
       <ProtectedRoute>
         <Dashboard />
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/board",
+    path: "/collab-tool/board",
     element:
       <ProtectedRoute>
         <Board />
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/settings",
+    path: "/collab-tool/settings",
     element:
       <ProtectedRoute>
         <AccountSettings />
@@ -33,12 +33,12 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/login",
+    path: "/collab-tool/login",
     element: <Login />
   },
 
   {
-    path: "*",
+    path: "/collab-tool/*",
     element: <NotFound />
   }
 ]);

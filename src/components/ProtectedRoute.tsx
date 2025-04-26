@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (!loading && !session) {
-      navigate("/login");
+      navigate("/collab-tool/login");
     }
   }, [loading, session, navigate]);
 

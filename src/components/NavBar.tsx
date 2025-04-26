@@ -68,7 +68,7 @@ const NavBar = ({onProjectCreated}: {onProjectCreated: () => void }) => {
                     </Flex>
                   </Flex>
 
-                  <Menu.Item value="settings" onClick={() => navigate('/settings')}>Settings</Menu.Item>
+                  <Menu.Item value="settings" onClick={() => navigate('/collab-tool/settings')}>Settings</Menu.Item>
                   <Menu.Item value="logout" color="fg.error" _hover={{ bg: "bg.error", color: "fg.error" }} onClick={signOut}>Logout</Menu.Item>
                 </Menu.Content>
               </Menu.Positioner>

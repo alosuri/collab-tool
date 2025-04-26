@@ -19,7 +19,7 @@ const ProjectCard = ({ name, path }: ProjectCardProps) => {
         </Card.Title>
       </Card.Body>
       <Card.Footer display="flex" justifyContent="space-between">
-        <Button variant="surface" onClick={() => navigate('/board', { state: { board_uuid: path } }) }>Open</Button>
+        <Button variant="surface" onClick={() => navigate('/collab-tool/board', { state: { board_uuid: path } }) }>Open</Button>
         <Menu.Root>
           <Menu.Trigger asChild>
             <Button variant="surface" size="sm" aspectRatio="square">
@@ -29,7 +29,7 @@ const ProjectCard = ({ name, path }: ProjectCardProps) => {
           <Portal>
             <Menu.Positioner>
               <Menu.Content>
-                <Menu.Item value="open" onClick={() => navigate('/board', { state: { board_uuid: path } }) }>Open</Menu.Item>
+                <Menu.Item value="open" onClick={() => navigate('/collab-tool/board', { state: { board_uuid: path } }) }>Open</Menu.Item>
               <Menu.Item value="export">Export</Menu.Item>
               <Menu.Item value="rename">Rename</Menu.Item>
               <Menu.Item value="delete" color="fg.error" _hover={{ bg: "bg.error", color: "fg.error" }}>Delete</Menu.Item>
